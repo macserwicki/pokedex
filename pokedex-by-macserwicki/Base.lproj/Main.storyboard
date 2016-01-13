@@ -4,6 +4,11 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="PokemonSolid.ttf">
+            <string>PokemonSolidNormal</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -22,12 +27,91 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tGu-Bx-jE9">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="58"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PoKeDeX" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sIM-O0-Hce">
+                                        <rect key="frame" x="251" y="20" width="99" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="47" id="KoC-2y-Orq"/>
+                                            <constraint firstAttribute="width" constant="151" id="O2N-cd-nfe"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="PokemonSolidNormal" family="Pokemon Solid" pointSize="25"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="KoC-2y-Orq"/>
+                                                <exclude reference="O2N-cd-nfe"/>
+                                            </mask>
+                                        </variation>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YNE-cz-fGY">
+                                        <rect key="frame" x="557" y="20" width="35" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="4aa-BW-NOq"/>
+                                            <constraint firstAttribute="width" constant="42" id="D8c-W5-HFh"/>
+                                            <constraint firstAttribute="height" constant="42" id="JQc-Uk-alT"/>
+                                            <constraint firstAttribute="height" constant="42" id="Pbo-TY-MND"/>
+                                            <constraint firstAttribute="height" constant="40" id="Ykc-nR-aGA"/>
+                                            <constraint firstAttribute="width" constant="42" id="fL0-5j-brg"/>
+                                            <constraint firstAttribute="width" constant="40" id="vSV-PA-SEI"/>
+                                            <constraint firstAttribute="width" constant="35" id="xQq-8h-Pgs"/>
+                                        </constraints>
+                                        <state key="normal" image="musicon"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="D8c-W5-HFh"/>
+                                                <exclude reference="JQc-Uk-alT"/>
+                                                <exclude reference="Pbo-TY-MND"/>
+                                                <exclude reference="Ykc-nR-aGA"/>
+                                                <exclude reference="fL0-5j-brg"/>
+                                                <exclude reference="vSV-PA-SEI"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="musicBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lLy-cH-LXF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" red="0.76470588240000004" green="0.073125621511408029" blue="0.061183639234904656" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="sIM-O0-Hce" firstAttribute="top" secondItem="tGu-Bx-jE9" secondAttribute="top" constant="5" id="4Dp-E1-mMk"/>
+                                    <constraint firstItem="YNE-cz-fGY" firstAttribute="top" secondItem="tGu-Bx-jE9" secondAttribute="top" constant="20" id="805-U2-17M"/>
+                                    <constraint firstAttribute="bottom" secondItem="YNE-cz-fGY" secondAttribute="bottom" constant="20" id="8JK-6K-qYz"/>
+                                    <constraint firstItem="sIM-O0-Hce" firstAttribute="centerY" secondItem="tGu-Bx-jE9" secondAttribute="centerY" id="Fym-Sr-4Mj"/>
+                                    <constraint firstAttribute="bottom" secondItem="sIM-O0-Hce" secondAttribute="bottom" constant="6" id="IB3-uZ-cum"/>
+                                    <constraint firstAttribute="bottom" secondItem="YNE-cz-fGY" secondAttribute="bottom" constant="8" id="IGw-iC-WWB"/>
                                     <constraint firstAttribute="height" constant="58" id="Ot2-1C-F96"/>
+                                    <constraint firstAttribute="bottom" secondItem="sIM-O0-Hce" secondAttribute="bottom" constant="8" id="SHx-dX-9Qm"/>
+                                    <constraint firstItem="YNE-cz-fGY" firstAttribute="centerY" secondItem="tGu-Bx-jE9" secondAttribute="centerY" id="VDX-BG-d4x"/>
+                                    <constraint firstItem="YNE-cz-fGY" firstAttribute="centerY" secondItem="tGu-Bx-jE9" secondAttribute="centerY" id="VUp-7F-AsK"/>
+                                    <constraint firstAttribute="trailing" secondItem="YNE-cz-fGY" secondAttribute="trailing" constant="8" id="WTb-nV-p2b"/>
+                                    <constraint firstItem="sIM-O0-Hce" firstAttribute="top" secondItem="tGu-Bx-jE9" secondAttribute="top" constant="20" id="d6a-EF-h8H"/>
+                                    <constraint firstItem="sIM-O0-Hce" firstAttribute="centerX" secondItem="tGu-Bx-jE9" secondAttribute="centerX" id="fx4-vs-aOQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="YNE-cz-fGY" secondAttribute="bottom" constant="8" id="jaZ-UY-wc8"/>
+                                    <constraint firstItem="YNE-cz-fGY" firstAttribute="top" secondItem="tGu-Bx-jE9" secondAttribute="top" constant="8" id="kfq-BZ-1AG"/>
+                                    <constraint firstAttribute="trailing" secondItem="YNE-cz-fGY" secondAttribute="trailing" constant="8" id="m1u-gy-elH"/>
+                                    <constraint firstAttribute="trailing" secondItem="YNE-cz-fGY" secondAttribute="trailing" constant="8" id="pAc-sL-h2p"/>
+                                    <constraint firstItem="sIM-O0-Hce" firstAttribute="centerX" secondItem="tGu-Bx-jE9" secondAttribute="centerX" id="xm3-EG-bNQ"/>
+                                    <constraint firstItem="sIM-O0-Hce" firstAttribute="centerX" secondItem="tGu-Bx-jE9" secondAttribute="centerX" id="zFu-e5-Eef"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="4Dp-E1-mMk"/>
+                                        <exclude reference="Fym-Sr-4Mj"/>
+                                        <exclude reference="IB3-uZ-cum"/>
+                                        <exclude reference="fx4-vs-aOQ"/>
+                                        <exclude reference="xm3-EG-bNQ"/>
+                                        <exclude reference="8JK-6K-qYz"/>
+                                        <exclude reference="IGw-iC-WWB"/>
+                                        <exclude reference="VDX-BG-d4x"/>
+                                        <exclude reference="VUp-7F-AsK"/>
+                                        <exclude reference="kfq-BZ-1AG"/>
+                                        <exclude reference="m1u-gy-elH"/>
+                                        <exclude reference="pAc-sL-h2p"/>
+                                    </mask>
+                                </variation>
                             </view>
-                            <searchBar contentMode="redraw" ambiguous="YES" misplaced="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="4MI-7b-kHe">
+                            <searchBar contentMode="redraw" ambiguous="YES" misplaced="YES" barStyle="black" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="4MI-7b-kHe">
                                 <rect key="frame" x="0.0" y="58" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
@@ -134,6 +218,7 @@
                     </view>
                     <connections>
                         <outlet property="collection" destination="KUi-zH-bUf" id="vtC-DO-EuJ"/>
+                        <outlet property="musicBtn" destination="YNE-cz-fGY" id="pI5-y8-5BG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -144,5 +229,6 @@
     <resources>
         <image name="106" width="120" height="120"/>
         <image name="bg" width="1920" height="1200"/>
+        <image name="musicon" width="96" height="96"/>
     </resources>
 </document>

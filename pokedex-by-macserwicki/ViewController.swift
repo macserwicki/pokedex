@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var collection: UICollectionView!
     
+    @IBOutlet weak var musicBtn: UIButton!
+   
     var pokemon = [Pokemon]()
+    var musicPlayer: AVAudioPlayer!
+    var musicPlayerPlaying: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +26,38 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         collection.dataSource = self
         
         parsePokmeonCSVData()
+        initAudio()
         
+    }
+    
+    func initAudio() {
+        let path = NSBundle.mainBundle().pathForResource("music", ofType: "mp3")!
+
+        do {
+            musicPlayer = try AVAudioPlayer(contentsOfURL: NSURL(string: path)!)
+            musicPlayer.prepareToPlay()
+            musicPlayer.numberOfLoops = -1
+            
+            if !musicPlayerPlaying {
+                musicPlayer.play()
+                musicBtn.setImage(UIImage(named: "musicon"), forState: .Normal)
+                
+            } else {
+                musicBtn.setImage(UIImage(named: "musicoff"), forState: .Normal)
+                musicPlayer.stop()
+            }
+            
+            musicPlayerPlaying = !musicPlayerPlaying
+            
+        } catch let error as NSError {
+            print(error.debugDescription)
+        }
+        
+        
+    }
+    
+    @IBAction func musicBtnPressed(sender: AnyObject) {
+        initAudio()
     }
     
     func parsePokmeonCSVData() {
@@ -79,6 +115,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         return 1
     }
     
+   
 
     override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
