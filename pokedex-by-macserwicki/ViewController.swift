@@ -12,6 +12,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     @IBOutlet weak var collection: UICollectionView!
     
+    var pokemon = [Pokemon]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,13 +20,37 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         collection.delegate = self
         collection.dataSource = self
         
+        parsePokmeonCSVData()
+        
+    }
+    
+    func parsePokmeonCSVData() {
+        
+        let path = NSBundle.mainBundle().pathForResource("pokemon", ofType: "csv")!
+        do {
+            let csv = try CSV(contentsOfURL: path)
+            let rows = csv.rows
+            
+            for row in rows {
+      
+                let pokemonID = Int(row["id"]!)!
+                let name = row["identifier"]!
+                let poke = Pokemon(name: name, pokedexId: pokemonID)
+                pokemon.append(poke)
+              
+            }
+            
+        } catch let error as NSError {
+            print(error.debugDescription)
+        }
+        
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PokemonCell", forIndexPath: indexPath) as? PokemonCell {
             
-            let pokemon = Pokemon(name: "Test \(indexPath.row)", pokedexId: indexPath.row)
+            let pokemon = self.pokemon[indexPath.row]
             
             cell.configureCell(pokemon)
             
@@ -43,7 +68,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 718
+        return self.pokemon.count
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
