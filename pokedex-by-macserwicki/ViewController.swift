@@ -37,17 +37,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             musicPlayer = try AVAudioPlayer(contentsOfURL: NSURL(string: path)!)
             musicPlayer.prepareToPlay()
             musicPlayer.numberOfLoops = -1
+            musicPlayer.play()
             
-            if !musicPlayerPlaying {
-                musicPlayer.play()
-                musicBtn.setImage(UIImage(named: "musicon"), forState: .Normal)
-                
-            } else {
-                musicBtn.setImage(UIImage(named: "musicoff"), forState: .Normal)
-                musicPlayer.stop()
-            }
-            
-            musicPlayerPlaying = !musicPlayerPlaying
             
         } catch let error as NSError {
             print(error.debugDescription)
@@ -56,8 +47,19 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
     }
     
-    @IBAction func musicBtnPressed(sender: AnyObject) {
-        initAudio()
+    
+    @IBAction func musicBtnPressed(sender: UIButton!) {
+        
+        if musicPlayer.playing {
+            musicPlayer.stop()
+            musicBtn.setImage(UIImage(named: "musicoff"), forState: .Normal)
+            sender.alpha = 0.66
+            } else {
+            musicPlayer.play()
+            musicBtn.setImage(UIImage(named: "musicon"), forState: .Normal)
+            sender.alpha = 1.0
+        }
+        
     }
     
     func parsePokmeonCSVData() {
