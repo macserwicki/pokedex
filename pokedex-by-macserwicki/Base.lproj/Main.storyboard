@@ -343,6 +343,7 @@
                     <connections>
                         <outlet property="collection" destination="KUi-zH-bUf" id="vtC-DO-EuJ"/>
                         <outlet property="musicBtn" destination="YNE-cz-fGY" id="pI5-y8-5BG"/>
+                        <outlet property="searchBar" destination="4MI-7b-kHe" id="4DO-sP-DrT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
