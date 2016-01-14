@@ -108,7 +108,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(105, 105)
+        
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let size = ((screenSize.width - 70) / 3)
+        // let size = ((screenSize.width - screenSize.width * 0.33) / 3)
+        //105 size is a good constant size
+        return CGSizeMake(size, size)
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
