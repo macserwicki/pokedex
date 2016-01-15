@@ -22,7 +22,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var inSearchMode: Bool = false
     
     var musicPlayer: AVAudioPlayer!
-    var musicPlayerPlaying: Bool = false
+    var musicPlayerPlaying: Bool! = true
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +34,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         searchBar.delegate = self
         searchBar.returnKeyType = UIReturnKeyType.Done
         parsePokmeonCSVData()
-        initAudio()
+      //  initAudio()
         
     }
     
@@ -116,7 +118,17 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        // segue
+        
+        let poke: Pokemon!
+        
+        if inSearchMode {
+            poke = filteredPokemon[indexPath.row]
+        } else {
+            poke = pokemon[indexPath.row]
+        }
+        
+        performSegueWithIdentifier("PokemonDetailVC", sender: poke)
+        
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -146,6 +158,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         view.endEditing(true)
     }
     
+    
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text == nil || searchBar.text == "" {
             inSearchMode = false
@@ -161,6 +174,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
    
  
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "PokemonDetailVC" {
+            if let detailVC = segue.destinationViewController as? PokemonDetailVC {
+                if let poke = sender as? Pokemon {
+                    detailVC.pokemon = poke
+                }
+            }
+        }
+    }
 
     override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
