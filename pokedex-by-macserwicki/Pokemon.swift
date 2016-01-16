@@ -87,6 +87,34 @@ class Pokemon {
                         self._type = ""
                     }
                     print(self._type)
+                    // Do stuff with parsed data
+                    if let desc = pokeDictionary["descriptions"] as? [Dictionary<String, String>] where desc.count > 0 {
+                        
+                        if let descURL = desc[0]["resource_uri"] {
+                            
+                            let fullURL = NSURL(string: "\(URL_BASE)\(descURL)")!
+                            
+                            Alamofire.request(.GET, fullURL).responseJSON {
+                                response in
+                                 let descResult = response.result
+                                
+                                if let descriptionDictionary = descResult.value as? Dictionary<String, AnyObject> {
+                                    if let descriptionString = descriptionDictionary["description"] as? String {
+                                        self._description = descriptionString
+                                        print(descriptionString)
+                                        print(self._description)
+                                    }
+                                }
+                                
+                                completed()
+                            }
+
+                        }
+                        
+                    } else {
+                        print("Description parsing is nil")
+                        self._description = ""
+                    }
                 }
             }
         }
