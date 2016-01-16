@@ -392,7 +392,7 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <segue destination="BYZ-38-t0r" kind="show" id="lUi-ka-mql"/>
+                                            <action selector="backButtonPressed:" destination="0P7-mP-rOr" eventType="touchUpInside" id="kNt-3O-0Oa"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -494,7 +494,7 @@ The methods in the UIConstraintBasedLayoutDebugging category on UIView listed in
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TwG-6v-XT1">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TwG-6v-XT1">
                                                 <rect key="frame" x="0.0" y="249" width="600" height="1"/>
                                                 <color key="backgroundColor" red="0.88275240384615383" green="0.88275240384615383" blue="0.88275240384615383" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -726,7 +726,16 @@ The methods in the UIConstraintBasedLayoutDebugging category on UIView listed in
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="baseAttackLbl" destination="awv-uE-0RV" id="idH-ZU-TrA"/>
+                        <outlet property="defenseLbl" destination="r1c-Q8-f6q" id="7jR-Xo-AFf"/>
+                        <outlet property="descriptionLbl" destination="to8-Og-PuR" id="QFc-3g-aGb"/>
+                        <outlet property="evolutionLbl" destination="hCD-3M-V9q" id="7Ua-hf-pan"/>
+                        <outlet property="heightLbl" destination="Zp1-nP-gSx" id="ACU-7y-Oy5"/>
+                        <outlet property="mainImg" destination="lQw-Zg-Ms7" id="0hb-CD-gsm"/>
                         <outlet property="nameLbl" destination="XOG-8S-m2T" id="8y5-G2-XsH"/>
+                        <outlet property="pokedexLbl" destination="Mnk-G7-bNT" id="5qo-zh-ZgL"/>
+                        <outlet property="typeLbl" destination="pdc-qt-phY" id="MNJ-ey-aCI"/>
+                        <outlet property="weightLbl" destination="Ags-70-l0D" id="Ke1-lK-lti"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CAK-ka-2Jw" userLabel="First Responder" sceneMemberID="firstResponder"/>

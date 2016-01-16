@@ -34,7 +34,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         searchBar.delegate = self
         searchBar.returnKeyType = UIReturnKeyType.Done
         parsePokmeonCSVData()
-      //  initAudio()
+        initAudio()
         
     }
     
