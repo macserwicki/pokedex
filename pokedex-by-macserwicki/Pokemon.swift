@@ -55,11 +55,6 @@ class Pokemon {
                     self._weight = weight
                 }
                 
-                if let attack = pokeDictionary["attack"] as? Int {
-                    print("attack is \(attack)")
-                    self._attack = String(attack)
-                }
-                
                 if let height = pokeDictionary["height"] as? String {
                     print("height is \(height)")
                     self._height = height
@@ -70,13 +65,31 @@ class Pokemon {
                     self._defense = String(defense)
                 }
                 
+                if let attack = pokeDictionary["attack"] as? Int {
+                    print("attack is \(attack)")
+                    self._attack = String(attack)
+                }
                 
-                
+            
+                if let types = pokeDictionary["types"] as? [Dictionary<String, String>] where types.count > 0 {
+                    
+                    if let type = types[0]["name"]{
+                        self._type = type.capitalizedString
+                    }
+                    
+                    if types.count > 1 {
+                        for var x = 1; x < types.count; x++ {
+                            if let type = types[x]["name"] {
+                                self._type! += "/\(type.capitalizedString)"
+                            }
+                        }
+                    } else {
+                        self._type = ""
+                    }
+                    print(self._type)
+                }
             }
-            
-            
         }
-        
     }
 
     
