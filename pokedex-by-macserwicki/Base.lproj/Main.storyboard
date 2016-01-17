@@ -729,6 +729,8 @@ The methods in the UIConstraintBasedLayoutDebugging category on UIView listed in
                         <outlet property="baseAttackLbl" destination="awv-uE-0RV" id="idH-ZU-TrA"/>
                         <outlet property="defenseLbl" destination="r1c-Q8-f6q" id="7jR-Xo-AFf"/>
                         <outlet property="descriptionLbl" destination="to8-Og-PuR" id="QFc-3g-aGb"/>
+                        <outlet property="evolutionImgCurrent" destination="UFf-O0-7No" id="ciT-WR-7ap"/>
+                        <outlet property="evolutionImgNext" destination="9cL-IS-Rio" id="iXC-rr-gEb"/>
                         <outlet property="evolutionLbl" destination="hCD-3M-V9q" id="7Ua-hf-pan"/>
                         <outlet property="heightLbl" destination="Zp1-nP-gSx" id="ACU-7y-Oy5"/>
                         <outlet property="mainImg" destination="lQw-Zg-Ms7" id="0hb-CD-gsm"/>

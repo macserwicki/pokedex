@@ -19,22 +19,87 @@ class Pokemon {
     private var _weight: String!
     private var _height: String!
     private var _attack: String!
-    private var _nextEvolution: String!
     private var _pokemonURL: String!
-    
-    
+    private var _nextEvolutionPokedexId: String!
+    private var _nextEvolutionLevel: String!
+    private var _nextEvolutionName: String!
+
     
     var name: String {
         return _name
     }
     
-    var defense: String {
-        return _defense
-    }
-    
     var pokedexId: Int {
         return _pokedexId
     }
+    
+    var description: String {
+        if _description == nil {
+            _description = ""
+        }
+        return _description
+    }
+    
+    var type: String {
+        if _type == nil {
+            _type = ""
+        }
+        return _type
+            
+    }
+    
+    var defense: String {
+        if _defense == nil {
+            _defense = ""
+        }
+        return _defense
+    }
+    
+    var weight: String {
+        if _weight == nil {
+            _weight = ""
+        }
+        return _weight
+    }
+    
+    var height: String {
+        if _height == nil {
+            _height = ""
+        }
+        return _height
+    }
+    
+    var attack: String {
+        if _attack == nil {
+            _attack = ""
+        }
+        return _attack
+    }
+    
+    var nextEvolutionPokedexId: String {
+        if _nextEvolutionPokedexId == nil {
+            _nextEvolutionPokedexId = ""
+        }
+        return _nextEvolutionPokedexId
+    }
+    
+    var nextEvolutionLevel: String {
+        if _nextEvolutionLevel == nil {
+            _nextEvolutionLevel = ""
+        }
+        return _nextEvolutionLevel
+    }
+    
+    var nextEvolutionName: String {
+        if _nextEvolutionName == nil {
+            _nextEvolutionName = ""
+        }
+        return _nextEvolutionName
+    }
+    
+    
+
+    
     
     init(name: String, pokedexId: Int) {
         _name = name
@@ -101,7 +166,6 @@ class Pokemon {
                                 if let descriptionDictionary = descResult.value as? Dictionary<String, AnyObject> {
                                     if let descriptionString = descriptionDictionary["description"] as? String {
                                         self._description = descriptionString
-                                        print(descriptionString)
                                         print(self._description)
                                     }
                                 }
@@ -114,6 +178,34 @@ class Pokemon {
                     } else {
                         print("Description parsing is nil")
                         self._description = ""
+                    }
+                    
+                    if let evolutionDictionary = pokeDictionary["evolutions"] as? [Dictionary<String, AnyObject>] {
+                        if let name = evolutionDictionary[0]["to"] as? String where evolutionDictionary.count > 0 {
+                            //mega data from API unsupported
+                            if name.rangeOfString("mega") == nil {
+                                
+                                if let evolutionURL = evolutionDictionary[0]["resource_uri"] as? String where evolutionDictionary.count > 0 {
+                                    let newPokedexIdString = evolutionURL.stringByReplacingOccurrencesOfString("/api/v1/pokemon/", withString: "")
+                                    let pokedexNumberString = newPokedexIdString.stringByReplacingOccurrencesOfString("/", withString: "")
+                                    self._nextEvolutionPokedexId = pokedexNumberString
+                                    self._nextEvolutionName = name
+                                    
+                                    if let level = evolutionDictionary[0]["level"] as? Int {
+                                        self._nextEvolutionLevel = String(level)
+                                    }
+                                    
+                                    print(self._nextEvolutionLevel)
+                                    print(self._nextEvolutionName)
+                                    print(self._nextEvolutionPokedexId)
+                                }
+                            }
+                        }
+                        
+                       
+                        
+                    } else {
+                        
                     }
                 }
             }

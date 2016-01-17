@@ -21,28 +21,60 @@ class PokemonDetailVC: UIViewController {
     @IBOutlet weak var weightLbl: UILabel!
     @IBOutlet weak var baseAttackLbl: UILabel!
     @IBOutlet weak var evolutionLbl: UILabel!
-    
+    @IBOutlet weak var evolutionImgCurrent: UIImageView!
+    @IBOutlet weak var evolutionImgNext: UIImageView!
     
     
     var pokemon: Pokemon!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-}
-
-    override func viewWillAppear(animated: Bool) {
+        
         let labelString = pokemon.name.capitalizedString
+        let currentImg = UIImage(named: "\(pokemon.pokedexId)")
         nameLbl.text = labelString
-        mainImg.image = UIImage(named: "\(pokemon.pokedexId)")
+        mainImg.image = currentImg
+        evolutionImgCurrent.image = currentImg
+        pokedexLbl.text = "\(pokemon.pokedexId)"
         
         pokemon.downloadPokemonDetails { () -> () in
             //called after download is finished
-            
-            self.defenseLbl.text = self.pokemon.defense
-            
+            self.updateUI()
         }
+        
+}
 
+    
+    func updateUI() {
+      
+        descriptionLbl.text = pokemon.description
+        typeLbl.text = pokemon.type
+        defenseLbl.text = pokemon.defense
+        baseAttackLbl.text = pokemon.attack
+        heightLbl.text = pokemon.height
+        weightLbl.text = pokemon.weight
+        
+        if pokemon.nextEvolutionName == "" {
+            evolutionImgNext.hidden = true
+            evolutionLbl.text = "No Evolutions"
+            
+        } else {
+            evolutionImgNext.hidden = false
+            evolutionImgNext.image = UIImage(named: pokemon.nextEvolutionPokedexId)
+           
+            var evoString: String = "Next Evolution: \(pokemon.nextEvolutionName)"
+           
+            if pokemon.nextEvolutionLevel != "" {
+                evoString.appendContentsOf(" LVL \(pokemon.nextEvolutionLevel)")
+            }
+            
+            evolutionLbl.text = evoString
+            
+            }
+        
     }
+    
+    
   
     @IBAction func backButtonPressed(sender: AnyObject) {
     dismissViewControllerAnimated(true, completion: nil)
