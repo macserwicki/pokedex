@@ -56,7 +56,7 @@ class PokemonDetailVC: UIViewController {
         
         if pokemon.nextEvolutionName == "" {
             evolutionImgNext.hidden = true
-            evolutionLbl.text = "No Evolutions"
+            evolutionLbl.text = "No Further Evolutions"
             
         } else {
             evolutionImgNext.hidden = false
