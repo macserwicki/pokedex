@@ -139,7 +139,8 @@ class Pokemon {
                 if let types = pokeDictionary["types"] as? [Dictionary<String, String>] where types.count > 0 {
                     
                     if let type = types[0]["name"]{
-                        self._type = type.capitalizedString
+                        self._type = "\(type.capitalizedString)"
+                        print(type.capitalizedString)
                     }
                     
                     if types.count > 1 {
@@ -148,8 +149,6 @@ class Pokemon {
                                 self._type! += "/\(type.capitalizedString)"
                             }
                         }
-                    } else {
-                        self._type = ""
                     }
                     print(self._type)
                     // Do stuff with parsed data
@@ -165,8 +164,12 @@ class Pokemon {
                                 
                                 if let descriptionDictionary = descResult.value as? Dictionary<String, AnyObject> {
                                     if let descriptionString = descriptionDictionary["description"] as? String {
+                                        
+                                        if descriptionString.containsString("POKMON") {
+                                            self._description = descriptionString.stringByReplacingOccurrencesOfString("POKMON", withString: "Pokemon")
+                                        } else {
                                         self._description = descriptionString
-                                        print(self._description)
+                                        }
                                     }
                                 }
                                 
@@ -180,9 +183,9 @@ class Pokemon {
                         self._description = ""
                     }
                     
-                    if let evolutionDictionary = pokeDictionary["evolutions"] as? [Dictionary<String, AnyObject>] {
+                    if let evolutionDictionary = pokeDictionary["evolutions"] as? [Dictionary<String, AnyObject>] where evolutionDictionary.count > 0  {
                         if let name = evolutionDictionary[0]["to"] as? String where evolutionDictionary.count > 0 {
-                            //mega data from API unsupported
+                            //mega data from API is not supported in the app
                             if name.rangeOfString("mega") == nil {
                                 
                                 if let evolutionURL = evolutionDictionary[0]["resource_uri"] as? String where evolutionDictionary.count > 0 {
@@ -195,9 +198,7 @@ class Pokemon {
                                         self._nextEvolutionLevel = String(level)
                                     }
                                     
-                                    print(self._nextEvolutionLevel)
-                                    print(self._nextEvolutionName)
-                                    print(self._nextEvolutionPokedexId)
+                                   
                                 }
                             }
                         }
@@ -207,6 +208,8 @@ class Pokemon {
                     } else {
                         
                     }
+                } else {
+                    self._type = ""
                 }
             }
         }
